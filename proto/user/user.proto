@@ -1,0 +1,60 @@
+syntax = "proto3";
+package user;
+import "google/api/annotations.proto";
+option go_package = "github.com/ergildo/go-lang-grpc-gateway-mysql-example/user-server/proto;user_pb";
+
+
+service UserServiceBP{
+  rpc CreateUser(NewUserRequest) returns (UserResponse){
+    option(google.api.http) = {
+      post: "/v1/users"
+      body: "*"
+    };
+  }
+  rpc UpdateUser(UpdateUserRequest) returns (UserResponse){
+    option(google.api.http) = {
+      put: "/v1/users"
+      body: "*"
+    };
+  }
+  rpc FindUserById(UserRequest) returns (UserResponse){
+    option(google.api.http) = {
+      get: "/v1/users/{id}"
+    };
+  }
+  rpc ListAllUsers(Void) returns (ListAllUsersResponse){
+    option(google.api.http) = {
+      get: "/v1/users"
+    };
+  }
+  rpc DeleteUser(UserRequest) returns (Void){
+    option(google.api.http) = {
+      delete: "/v1/users/{id}"
+    };
+
+  }
+}
+
+message Void{}
+
+message NewUserRequest{
+  string name = 1;
+}
+
+message UpdateUserRequest{
+  int64 id = 1;
+  string name = 2;
+}
+
+message UserResponse{
+  int64 id = 1;
+  string name = 2;
+}
+
+message UserRequest{
+  int64 id = 1;
+}
+message ListAllUsersResponse{
+  repeated UserResponse UserResponse = 1;
+}
+
