@@ -7,8 +7,6 @@ import (
 	"log"
 )
 
-
-
 func ListAll() []model.User {
 
 	db, err := database.GetDB()
