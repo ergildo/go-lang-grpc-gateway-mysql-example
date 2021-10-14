@@ -1,2 +1,2 @@
-# go-lang-grpc-app-mysql-example
+# go-lang-grpc-mysql-example
 
